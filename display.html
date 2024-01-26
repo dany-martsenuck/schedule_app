@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
     <link rel="stylesheet" href="styles/display.css">
     <title>Schedule Display</title>
 </head>
 <body>
 
-    <!-- Your table element where the schedule will be displayed -->
-    <table id="scheduleTable"></table>
+    <!-- Your Ag-Grid table element -->
+    <div id="scheduleGrid" class="ag-theme-alpine"></div>
 
     <!-- File input for selecting the schedule file -->
     <label for="scheduleFileInput">Select Schedule File:</label>
     <input type="file" id="scheduleFileInput" accept=".csv, .xlsx" required>
+
+    <!-- Include Ag-Grid library -->
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
 
     <!-- Include the script at the end of the body or after the elements it references -->
     <script src="scripts/display.js"></script>
