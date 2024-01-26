@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/admin.css">
+    <title>Schedule Admin</title>
+</head>
+
+<body>
+    <h1>Schedule Admin Page</h1>
+    <form id="scheduleForm">
+        <label for="fileInput">Upload Schedule File:</label>
+        <input type="file" id="fileInput" accept=".csv, .xlsx" required>
+
+        <label for="weekendColor">Weekend Color:</label>
+        <input type="color" id="weekendColor" value="#00FF00">
+
+        <label for="morningShiftColor">Morning Shift Color:</label>
+        <input type="color" id="morningShiftColor" value="#FFFF00">
+
+        <label for="eveningShiftColor">Evening Shift Color:</label>
+        <input type="color" id="eveningShiftColor" value="#FF69B4">
+
+        <button type="button" onclick="applyColors()">Apply Colors</button>
+    </form>
+
+    <script src="scripts/admin.js"></script>
+</body>
+
+</html>
