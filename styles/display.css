@@ -23,4 +23,31 @@ th {
     background-color: #f2f2f2;
 }
 
-/* Add additional styling as needed */
+/* Add this to your display.css file or create a new one */
+
+.ag-header-cell {
+    border: 1px solid #d9d9d9;
+    background-color: #f4f4f4;
+    padding: 4px 8px;
+    box-sizing: border-box;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ag-header-cell-label {
+    display: flex;
+    align-items: center;
+}
+
+.ag-header-cell-text {
+    margin-right: 5px;
+}
+
+.ag-header-icon {
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+/* Add more styling as needed */
