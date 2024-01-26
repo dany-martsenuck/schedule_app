@@ -1,7 +1,31 @@
-// Sample data for testing (replace this with actual data retrieval logic)
-const scheduleData = [
-    ["Ілюшин Микита Денисович", "Чат", "CC300600IMD", "380961212408", "ilushinikita4@gmail.com", "1", "9830", "CC150802MDE", "07:00-19:00", "07:00-19:00", "Вихідний", "Вихідний", "09:00-21:00", "09:00-19:00", "Вихідний", "Вихідний", "20:30-08:30", "20:30-08:30", "Вихідний", "08:00-20:00", "08:00-20:00", "Перенесення", "Вихідний", "Вихідний", "14:00-02:00", "14:00-02:00", "Вихідний", "Вихідний", "20:30-08:30", "20:30-08:30", "Вихідний", "Вихідний", "08:00-20:00", "08:00-20:00", "Вихідний", "Вихідний", "14:00-02:00", "14:00-02:00", "Вихідний", "88:00:00", "176:00:00", "44:00:00", "0:00"]
-];
+// Function to read the schedule file and populate the table
+function readScheduleFile(file) {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+        const contents = e.target.result;
+        const scheduleData = parseCSV(contents); // Implement CSV parsing logic
+        createTableHeader();
+        createTableRows(scheduleData);
+        applyCellColors();
+    };
+
+    reader.readAsText(file);
+}
+
+// Sample function to parse CSV data (replace with actual parsing logic)
+function parseCSV(data) {
+    const rows = data.split('\n');
+    const scheduleData = [];
+
+    for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].split(',');
+        scheduleData.push(cells);
+    }
+
+    return scheduleData;
+}
+
 
 // Function to create table header
 function createTableHeader() {
@@ -64,6 +88,13 @@ function sortTable(columnIndex) {
 // Execute functions when the page loads
 window.onload = function () {
     createTableHeader();
-    createTableRows(scheduleData);
+    // Read the schedule file when the page loads
+    const scheduleFileInput = document.getElementById('scheduleFileInput');
+    scheduleFileInput.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            readScheduleFile(file);
+        }
+    });
     applyCellColors();
 };
