@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/display.css">
     <title>Schedule Display</title>
 </head>
-
 <body>
-    <h1>Schedule Display Page</h1>
-    <table id="scheduleTable">
-        <!-- Schedule will be dynamically inserted here using display.js -->
-    </table>
 
+    <!-- Your table element where the schedule will be displayed -->
+    <table id="scheduleTable"></table>
+
+    <!-- File input for selecting the schedule file -->
+    <label for="scheduleFileInput">Select Schedule File:</label>
+    <input type="file" id="scheduleFileInput" accept=".csv, .xlsx" required>
+
+    <!-- Include the script at the end of the body or after the elements it references -->
     <script src="scripts/display.js"></script>
-</body>
 
+</body>
 </html>
