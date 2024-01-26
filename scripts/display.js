@@ -4,21 +4,21 @@ function readScheduleFile(file) {
 
     reader.onload = function (e) {
         const contents = e.target.result;
-        const scheduleData = parseCSV(contents); // Implement CSV parsing logic
-        createTableHeader();
-        createTableRows(scheduleData);
+        const scheduleData = parseCSV(contents);
+        createTableHeader(scheduleData[0]); // Pass the column names to createTableHeader
+        createTableRows(scheduleData.slice(1)); // Exclude the header row from data
         applyCellColors();
     };
 
     reader.readAsText(file);
 }
 
-// Sample function to parse CSV data (replace with actual parsing logic)
+// Function to parse CSV data
 function parseCSV(data) {
     const rows = data.split('\n');
     const scheduleData = [];
 
-    for (let i = 1; i < rows.length; i++) {
+    for (let i = 0; i < rows.length; i++) {
         const cells = rows[i].split(',');
         scheduleData.push(cells);
     }
@@ -26,12 +26,10 @@ function parseCSV(data) {
     return scheduleData;
 }
 
-
 // Function to create table header
-function createTableHeader() {
+function createTableHeader(columnNames) {
     const headerRow = document.createElement("tr");
-    const headers = ["Full Name", "Type", "LDAP", "Phone Number", "Email", "Level", "Job Number"];
-    headers.forEach(headerText => {
+    columnNames.forEach(headerText => {
         const th = document.createElement("th");
         th.textContent = headerText;
         headerRow.appendChild(th);
@@ -52,9 +50,8 @@ function createTableRows(data) {
     });
 }
 
-// Sample function to apply cell colors based on preferences (replace with actual logic)
+// Function to apply cell colors based on preferences
 function applyCellColors() {
-    // Dummy logic, replace with actual color logic
     const colorPreferences = {
         "Вихідний": "green",
         "07:00-19:00": "yellow",
@@ -70,25 +67,23 @@ function applyCellColors() {
     });
 }
 
-// Sample function to sort table by column index (replace with actual sorting logic)
+// Function to sort table by column index
 function sortTable(columnIndex) {
     const table = document.getElementById("scheduleTable");
-    const rows = Array.from(table.rows).slice(1); // Exclude header row
+    const rows = Array.from(table.rows).slice(1);
     rows.sort((a, b) => {
         const cellA = a.cells[columnIndex].textContent.trim();
         const cellB = b.cells[columnIndex].textContent.trim();
         return cellA.localeCompare(cellB);
     });
     table.innerHTML = "";
-    createTableHeader();
+    createTableHeader(columnNames);
     createTableRows(rows.map(row => Array.from(row.cells).map(cell => cell.textContent)));
-    applyCellColors(); // Reapply colors after sorting
+    applyCellColors();
 }
 
 // Execute functions when the page loads
 window.onload = function () {
-    createTableHeader();
-    // Read the schedule file when the page loads
     const scheduleFileInput = document.getElementById('scheduleFileInput');
     scheduleFileInput.addEventListener('change', function (event) {
         const file = event.target.files[0];
